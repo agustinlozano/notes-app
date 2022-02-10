@@ -1,15 +1,18 @@
+import Note from './components/Note'
+
 function App({ notes }) {
-  console.log(notes)
   return (
     <div className="App">
-      <h2>Notes App</h2>
-      {
-        notes.map(note => {
-          return <p key={note.id}>{note.content}</p>
-        })
-      }
+      <h1>Notes App</h1>
+      <ul>
+        {
+          notes.map(note => 
+            <Note key={note.id} note={note} />
+          )
+        }
+      </ul>
     </div>
   )
 }
 
-export default App;
+export default App
