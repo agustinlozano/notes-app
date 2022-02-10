@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "json-server": "0.17.0",
     "standard": "16.0.4"
   }
 }
