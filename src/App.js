@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import Note from './components/Note'
+import Form from './components/Form'
+import ImportanceToggle from './components/ImportanceToggle'
+import Notes from './components/Notes'
 import { getAll, create } from './servises/notes'
 
 function App () {
@@ -13,7 +15,7 @@ function App () {
       .catch(err => console.error(err))
   }, [])
 
-  const addNote = (event) => {
+  const handleAddNote = (event) => {
     event.preventDefault()
     const noteObject = {
       content: newNote
@@ -36,30 +38,21 @@ function App () {
 
   const notesToShow = showAll
     ? notes
-    : notes.filter(note => note.important)
+    : notes.filter(note => note.importance)
 
   return (
     <div className='App'>
       <h1>Notes App</h1>
-      <div>
-        <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? 'important' : 'all'}
-        </button>
-      </div>
-      <ul>
-        {
-          notesToShow.map(note =>
-            <Note key={note.id} note={note} />
-          )
-        }
-      </ul>
-      <form onSubmit={addNote}>
-        <input
-          value={newNote}
-          onChange={handleNoteChange}
-        />
-        <button type='submit'>save</button>
-      </form>
+      <ImportanceToggle
+        setShowAll={setShowAll}
+        showAll={showAll}
+      />
+      <Notes notes={notesToShow} />
+      <Form
+        note={newNote}
+        addNote={handleAddNote}
+        handler={handleNoteChange}
+      />
     </div>
   )
 }
