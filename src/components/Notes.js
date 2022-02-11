@@ -2,13 +2,15 @@ import Note from './Note'
 
 const Notes = ({ notes }) => {
   return (
-    <ul>
-      {
-        notes.map(note =>
-          <Note key={note.id} note={note} />
-        )
-      }
-    </ul>
+    <div className='notes shadow'>
+      <ul>
+        {
+          notes.map(note =>
+            <Note key={note.id} note={note} />
+          )
+        }
+      </ul>
+    </div>
   )
 }
 

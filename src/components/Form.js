@@ -1,11 +1,16 @@
 const Form = ({ note, addNote, handler }) => {
   return (
     <form onSubmit={addNote}>
-      <input
+      <textarea
         value={note}
         onChange={handler}
       />
-      <button type='submit'>save</button>
+      <button
+        type='submit'
+        id='btn'
+      >
+        save
+      </button>
     </form>
   )
 }
