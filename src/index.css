@@ -1,0 +1,81 @@
+:root {
+  --background: #ffc8dd;
+  --inputs: #bde0fe;
+  --details: #cdb4db;
+  --selectedText: #ffafcc;
+  --text: #f1faee;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  width: 600px;
+  margin: auto;
+  padding: auto;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+#root {
+  margin:auto;
+  text-align: center;
+}
+
+#root ul {
+  padding: 0;
+}
+
+#root .importance-toggle {
+  margin-top: 50px;
+  width: 300px;
+  height: 25px;
+}
+
+#root form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#root textarea {
+  min-width: 300px;
+  height: 50px;
+  font-size: larger;
+  color: var(--details);
+
+  outline:none;
+  padding: 10px;
+} 
+
+#root button {
+  width: 80px;
+  color: var(--text);
+}
+
+form textarea, button {
+  background-color: var(--inputs);
+  border: 2px solid var(--details);
+  border-radius: 10px;
+}
+
+#root .notes {
+  margin: 10px auto 70px auto;
+  padding: 20px;
+  background-color: #a2d2ff;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.shadow {
+  -webkit-box-shadow: 3px 3px 23px -5px rgba(0,0,0,0.47);
+  -moz-box-shadow: 3px 3px 23px -5px rgba(0,0,0,0.47);
+  box-shadow: 3px 3px 23px -5px rgba(0,0,0,0.47);
+}
+
+#btn:hover {
+  color: var(--selectedText)
+}
+
+::selection {
+  color: var(--inputs);
+  background: var(--details);
+}
