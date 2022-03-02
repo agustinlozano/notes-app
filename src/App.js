@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
-import Form from './components/Form'
+import NoteForm from './components/NoteForm'
+import LoginForm from './components/LoginForm'
 import ImportanceToggle from './components/ImportanceToggle'
 import Notes from './components/Notes'
-import { getAll, create } from './servises/notes'
+import { getAll, create, setToken } from './servises/notes'
 
 function App () {
   const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState()
   const [showAll, setShowAll] = useState(false)
+  const [user, setUser] = useState(false)
+
+  console.log(user)
 
   useEffect(() => {
     getAll()
@@ -15,16 +18,19 @@ function App () {
       .catch(err => console.error(err))
   }, [])
 
-  const handleAddNote = (event) => {
-    event.preventDefault()
-    const noteObject = {
-      content: newNote
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      setToken(user.token)
     }
+  }, [])
 
+  const addNote = noteObject => {
     create(noteObject)
       .then(() => {
         setNotes(notes.concat(noteObject))
-        setNewNote('')
       })
       .catch(error => {
         const message = error.response.data
@@ -32,8 +38,10 @@ function App () {
       })
   }
 
-  const handleNoteChange = (event) => {
-    setNewNote(event.target.value)
+  const handleLogout = () => {
+    setUser(null)
+    setToken(user.token)
+    window.localStorage.removeItem('loggedNoteAppUser')
   }
 
   const notesToShow = showAll
@@ -43,16 +51,21 @@ function App () {
   return (
     <div className='App'>
       <h1>Notes App</h1>
+      {
+        user
+          ? <NoteForm
+              addNote={addNote}
+              handleLogout={handleLogout}
+            />
+          : <LoginForm
+              handleUser={setUser}
+            />
+      }
       <ImportanceToggle
         setShowAll={setShowAll}
         showAll={showAll}
       />
       <Notes notes={notesToShow} />
-      <Form
-        note={newNote}
-        addNote={handleAddNote}
-        handler={handleNoteChange}
-      />
     </div>
   )
 }
