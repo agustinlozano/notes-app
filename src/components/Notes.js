@@ -1,19 +1,17 @@
 import Note from './Note'
 
 const Notes = ({ notes }) => {
-  return (
-    <div className='notes shadow'>
-      {
+  <div className='notes shadow'>
+    {
         notes.map(note =>
           <Note
-            key={note.id}
+            key={note.id || note.content}
             content={note.content}
-            username={note.user.username}
+            user={note.user}
           />
         )
       }
-    </div>
-  )
+  </div>
 }
 
 export default Notes
