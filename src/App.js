@@ -1,47 +1,57 @@
 import { useEffect, useState } from 'react'
-import NoteForm from './components/NoteForm'
-import LoginForm from './components/LoginForm'
-import ImportanceToggle from './components/ImportanceToggle'
-import Notes from './components/Notes'
 import { getAll, create, setToken } from './servises/notes'
+import ImportanceToggle from './components/ImportanceToggle'
+import LoginForm from './components/LoginForm'
+import NoteForm from './components/NoteForm'
+import Notes from './components/Notes'
+import Notification from './components/Notification'
+import UserProfile from './components/UserProfile'
+import { showNotification } from './utils/helper-methods'
 
 function App () {
   const [notes, setNotes] = useState([])
   const [showAll, setShowAll] = useState(false)
   const [user, setUser] = useState(false)
-
-  console.log(user)
+  const [notification, setNotification] = useState({})
 
   useEffect(() => {
+    const newNotification = { content: '', type: '' }
+
     getAll()
-      .then(response => setNotes(response.data))
-      .catch(err => console.error(err))
-  }, [])
+      .then(response => {
+        const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
+        if (loggedUserJSON) {
+          const user = JSON.parse(loggedUserJSON)
+          setUser(user)
+          setToken(user.token)
+        }
+        setNotes(response.data)
+        setNotification(newNotification)
+      })
+      .catch(err => {
+        newNotification.content = 'Error: notes cannot be accessed'
+        newNotification.type = 'failure-notification'
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      setToken(user.token)
-    }
+        showNotification(setNotification, newNotification)
+        console.error(err)
+      })
   }, [])
 
   const addNote = noteObject => {
+    const newNotification = { content: 'A new note has been added', type: 'success-notification' }
+
     create(noteObject)
       .then(() => {
+        showNotification(setNotification, newNotification)
         setNotes(notes.concat(noteObject))
       })
       .catch(error => {
-        const message = error.response.data
-        console.error(message)
-      })
-  }
+        newNotification.content = 'The note cannot be added'
+        newNotification.type = 'failure-notification'
 
-  const handleLogout = () => {
-    setUser(null)
-    setToken(user.token)
-    window.localStorage.removeItem('loggedNoteAppUser')
+        showNotification(setNotification, newNotification)
+        console.error(error.response.data)
+      })
   }
 
   const notesToShow = showAll
@@ -50,15 +60,25 @@ function App () {
 
   return (
     <div className='App'>
-      <h1>Notes App</h1>
+      <h1>Wizard's Notes</h1>
+      <Notification
+        content={notification.content}
+        type={notification.type}
+      />
       {
         user
-          ? <NoteForm
-              addNote={addNote}
-              handleLogout={handleLogout}
-            />
+          ? (
+            <>
+              <UserProfile
+                user={user}
+                handleUser={setUser}
+              />
+              <NoteForm addNote={addNote} />
+            </>
+            )
           : <LoginForm
               handleUser={setUser}
+              hanlderNotification={setNotification}
             />
       }
       <ImportanceToggle
