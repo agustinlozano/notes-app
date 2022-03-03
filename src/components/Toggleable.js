@@ -8,11 +8,20 @@ const Toggleable = ({ children, buttonLabel }) => {
   return (
     <div>
       <div style={hideWhenVisible}>
-        <button onClick={() => setVisible(true)}>{buttonLabel}</button>
+        <button
+          onClick={() => setVisible(true)}
+          id='btn'
+        >{buttonLabel}
+        </button>
       </div>
       <div style={showWhenVisible}>
         {children}
-        <button onClick={() => setVisible(false)}>Cancel</button>
+        <button
+          onClick={() => setVisible(false)}
+          id='btn'
+        >
+          Cancel
+        </button>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Toggleable from './Toggleable'
 
-const NoteForm = ({ addNote, handleLogout }) => {
+const NoteForm = ({ addNote }) => {
   const [newNote, setNewNote] = useState()
 
   const handleChange = event => {
@@ -21,7 +21,7 @@ const NoteForm = ({ addNote, handleLogout }) => {
   return (
     <Toggleable buttonLabel='new note'>
       <h3>Create a new note</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='note-form'>
         <textarea
           value={newNote}
           onChange={handleChange}
@@ -33,11 +33,6 @@ const NoteForm = ({ addNote, handleLogout }) => {
           save
         </button>
       </form>
-      <div>
-        <button onClick={handleLogout}>
-          logout
-        </button>
-      </div>
     </Toggleable>
   )
 }
