@@ -1,4 +1,5 @@
 import Note from './Note'
+import propTypes from 'prop-types'
 
 const Notes = ({ notes }) =>
   <div className='notes shadow'>
@@ -12,5 +13,9 @@ const Notes = ({ notes }) =>
       )
     }
   </div>
+
+Notes.propTypes = {
+  notes: propTypes.array.isRequired
+}
 
 export default Notes

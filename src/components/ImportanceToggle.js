@@ -1,3 +1,5 @@
+import propTypes from 'prop-types'
+
 const ImportanceToggle = ({ setShowAll, showAll }) => {
   return (
     <div>
@@ -10,6 +12,11 @@ const ImportanceToggle = ({ setShowAll, showAll }) => {
       </button>
     </div>
   )
+}
+
+ImportanceToggle.propTypes = {
+  setShowAll: propTypes.func.isRequired,
+  showAll: propTypes.bool.isRequired
 }
 
 export default ImportanceToggle

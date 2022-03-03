@@ -3,6 +3,7 @@ import { setToken } from '../servises/notes'
 import loginServices from '../servises/login'
 import Toggleable from './Toggleable'
 import { showNotification } from '../utils/helper-methods'
+import propTypes from 'prop-types'
 
 const LoginForm = ({ handleUser, hanlderNotification }) => {
   const [username, setUsername] = useState('')
@@ -64,6 +65,11 @@ const LoginForm = ({ handleUser, hanlderNotification }) => {
       </form>
     </Toggleable>
   )
+}
+
+LoginForm.propTypes = {
+  handleUser: propTypes.func.isRequired,
+  hanlderNotification: propTypes.func.isRequired
 }
 
 export default LoginForm

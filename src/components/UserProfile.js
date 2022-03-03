@@ -1,4 +1,5 @@
 import { setToken } from '../servises/notes'
+import propTypes from 'prop-types'
 
 const UserProfile = ({ user, handleUser }) => {
   const handleLogout = () => {
@@ -18,6 +19,11 @@ const UserProfile = ({ user, handleUser }) => {
       </button>
     </div>
   )
+}
+
+UserProfile.propTypes = {
+  user: propTypes.object.isRequired,
+  handleUser: propTypes.func.isRequired
 }
 
 export default UserProfile

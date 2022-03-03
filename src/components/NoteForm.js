@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import Toggleable from './Toggleable'
+import propTypes from 'prop-types'
 
 const NoteForm = ({ addNote }) => {
   const [newNote, setNewNote] = useState()
@@ -37,6 +38,10 @@ const NoteForm = ({ addNote }) => {
       </form>
     </Toggleable>
   )
+}
+
+NoteForm.propTypes = {
+  addNote: propTypes.func.isRequired
 }
 
 export default NoteForm

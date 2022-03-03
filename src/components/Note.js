@@ -1,3 +1,5 @@
+import propTypes from 'prop-types'
+
 const Note = ({ content, user }) => {
   const username = user
     ? user.username
@@ -9,6 +11,11 @@ const Note = ({ content, user }) => {
       <p>By {username}</p>
     </>
   )
+}
+
+Note.propTypes = {
+  user: propTypes.object.isRequired,
+  content: propTypes.string.isRequired
 }
 
 export default Note
