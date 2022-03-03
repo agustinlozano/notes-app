@@ -1,9 +1,9 @@
 :root {
-  --background: #ffc8dd;
-  --inputs: #bde0fe;
+  --background: #ddbdfc;
+  --secondary: #ffc8dd;
   --details: #cdb4db;
-  --selectedText: #ffafcc;
-  --text: #f1faee;
+  --selectedText: #fef9ef;
+  --text: #6c757d;
 }
 
 body {
@@ -30,7 +30,7 @@ body {
   height: 25px;
 }
 
-#root form {
+form {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,7 +52,7 @@ body {
 }
 
 form textarea, button {
-  background-color: var(--inputs);
+  background-color: var(--secondary);
   border: 2px solid var(--details);
   border-radius: 10px;
 }
@@ -60,7 +60,7 @@ form textarea, button {
 #root .notes {
   margin: 10px auto 70px auto;
   padding: 20px;
-  background-color: #a2d2ff;
+  background-color: #f5d2e0;
   width: 400px;
   border-radius: 10px;
 }
@@ -71,11 +71,52 @@ form textarea, button {
   box-shadow: 3px 3px 23px -5px rgba(0,0,0,0.47);
 }
 
+.hide {
+  display: none;
+}
+
+.failure-notification, .success-notification {
+  background-color: var(--secondary);
+  font-weight: bold;
+  margin: 20px auto 20px auto;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.failure-notification {
+  color: #ef233c;
+  border: solid 3px #ef233c;
+}
+
+.success-notification {
+  color: #99d98c;
+  border: solid 3px #99d98c;
+}
+
+.login-field {
+  background-color: var(--secondary);
+  color: var(--text);
+  height: 40px;
+  padding: auto 10px auto 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
 #btn:hover {
   color: var(--selectedText)
 }
 
 ::selection {
-  color: var(--inputs);
+  color: var(--secondary);
   background: var(--details);
+}
+
+input:focus {
+  outline: none;
 }
