@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Toggleable from './Toggleable'
 
 const NoteForm = ({ addNote }) => {
   const [newNote, setNewNote] = useState()
+  const toggleableRef = useRef()
 
   const handleChange = event => {
     setNewNote(event.target.value)
@@ -16,10 +17,11 @@ const NoteForm = ({ addNote }) => {
 
     addNote(noteObject)
     setNewNote('')
+    toggleableRef.current.toggleVisibility()
   }
 
   return (
-    <Toggleable buttonLabel='new note'>
+    <Toggleable buttonLabel='new note' ref={toggleableRef}>
       <h3>Create a new note</h3>
       <form onSubmit={handleSubmit} className='note-form'>
         <textarea
