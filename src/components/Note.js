@@ -1,6 +1,9 @@
-const Note = ({ note }) => {
+const Note = ({ content, username }) => {
   return (
-    <ul>{note.content}</ul>
+    <>
+      <li className='bold-text'>{content}</li>
+      <p>By {username}</p>
+    </>
   )
 }
 
