@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAll, create, setToken } from './servises/notes'
+import { getAll, create, setToken } from './services/notes'
 import ImportanceToggle from './components/ImportanceToggle'
 import LoginForm from './components/LoginForm'
 import NoteForm from './components/NoteForm'
@@ -12,7 +12,7 @@ function App () {
   const [notes, setNotes] = useState([])
   const [showAll, setShowAll] = useState(false)
   const [user, setUser] = useState(false)
-  const [notification, setNotification] = useState({})
+  const [notification, setNotification] = useState({ content: '', type: '' })
 
   useEffect(() => {
     const newNotification = { content: '', type: '' }
@@ -26,7 +26,6 @@ function App () {
           setToken(user.token)
         }
         setNotes(response.data)
-        setNotification(newNotification)
       })
       .catch(err => {
         newNotification.content = 'Error: notes cannot be accessed'
@@ -38,7 +37,10 @@ function App () {
   }, [])
 
   const addNote = noteObject => {
-    const newNotification = { content: 'A new note has been added', type: 'success-notification' }
+    const newNotification = {
+      content: 'A new note has been added',
+      type: 'success-notification'
+    }
 
     create(noteObject)
       .then(() => {
