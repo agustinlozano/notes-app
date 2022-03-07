@@ -14,7 +14,7 @@ const Note = ({ content, user }) => {
 }
 
 Note.propTypes = {
-  user: propTypes.object.isRequired,
+  user: propTypes.object,
   content: propTypes.string.isRequired
 }
 
