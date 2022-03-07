@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { setToken } from '../servises/notes'
-import loginServices from '../servises/login'
+import { setToken } from '../services/notes'
+import loginServices from '../services/login'
 import Toggleable from './Toggleable'
 import { showNotification } from '../utils/helper-methods'
 import propTypes from 'prop-types'
@@ -40,24 +40,29 @@ const LoginForm = ({ handleUser, hanlderNotification }) => {
   return (
     <Toggleable buttonLabel='show login'>
       <form onSubmit={hanldeLogin} className='login'>
-        <input
-          className='login-field'
-          type='text'
-          value={username}
-          name='Username'
-          placeholder='Username'
-          onChange={({ target }) => setUsername(target.value)}
-        />
-        <input
-          className='login-field'
-          type='password'
-          value={password}
-          name='Password'
-          placeholder='Password'
-          onChange={({ target }) => setPassword(target.value)}
-        />
+        <label htmlFor='Username'>
+          <input
+            className='login-field'
+            type='text'
+            value={username}
+            name='Username'
+            placeholder='Username'
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </label>
+        <label htmlFor='Password'>
+          <input
+            className='login-field'
+            type='password'
+            value={password}
+            name='Password'
+            placeholder='Password'
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </label>
         <button
           className='login-field'
+          type='submit'
           id='btn'
         >
           Login
