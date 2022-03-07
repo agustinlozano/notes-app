@@ -1,4 +1,4 @@
-import { setToken } from '../servises/notes'
+import { setToken } from '../services/notes'
 import propTypes from 'prop-types'
 
 const UserProfile = ({ user, handleUser }) => {
@@ -10,7 +10,7 @@ const UserProfile = ({ user, handleUser }) => {
 
   return (
     <div>
-      <p>{user.username} logged in</p>
+      <p><b>{user.username}</b> logged in</p>
       <button
         onClick={handleLogout}
         id='btn'
