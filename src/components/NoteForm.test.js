@@ -28,13 +28,19 @@ describe('<NoteForm/>', () => {
     component.getByText('save')
   })
 
-  test('after clicking on the save button, prop event handler is called once', () => {
-    const newNoteButton = component.getByText('new note')
-    fireEvent.click(newNoteButton)
-
-    const saveButton = component.getByText('save')
+  test('after submitting the form with the fields, prop event handler is called once and note content is rendered', () => {
+    const saveButton = component.getByText('new note')
     fireEvent.click(saveButton)
 
+    const form = component.container.querySelector('form')
+    const textArea = component.container.querySelector('textarea')
+
+    fireEvent.change(textArea, {
+      target: { value: 'This note is written by tests' }
+    })
+
+    fireEvent.submit(form)
     expect(mockHandler).toHaveBeenCalledTimes(1)
+    expect(mockHandler.mock.calls[0][0].content).toBe('This note is written by tests')
   })
 })
