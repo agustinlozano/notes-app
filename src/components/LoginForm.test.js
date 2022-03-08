@@ -4,25 +4,37 @@ import LoginForm from './LoginForm'
 
 describe('<LoginForm/>', () => {
   let component
-  const mockHandler = jest.fn()
 
   beforeEach(() => {
     component = render(
       <LoginForm
         handleUser={() => {}}
-        hanlderNotification={mockHandler}
+        hanlderNotification={() => {}}
       />
     )
   })
 
-  test('renders fields and login button can be clicked', () => {
+  test('renders fields', () => {
+    component.getByText('show login')
     component.getByPlaceholderText('Username')
     component.getByPlaceholderText('Password')
+    component.getByText('Login')
     component.getByText('Cancel')
+  })
 
-    const button = component.getByText('Login')
-    fireEvent.click(button)
+  test('can type in the fields and submit the form', () => {
+    const usernameField = component.getByPlaceholderText('Username')
+    const passwordField = component.getByPlaceholderText('Password')
+    const form = component.container.querySelector('form')
 
-    // expect(mockHandler).toHaveBeenCalledTimes(1)
+    fireEvent.change(usernameField, {
+      target: { value: 'EngineerWizard' }
+    })
+
+    fireEvent.change(passwordField, {
+      target: { value: 'ThisIsMyPass' }
+    })
+
+    fireEvent.submit(form)
   })
 })
