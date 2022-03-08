@@ -15,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "browserslist": {
     "production": [
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
+    "cypress": "9.5.1",
     "jest-watch-typeahead": "^0.6.5",
     "standard": "16.0.4"
   },
