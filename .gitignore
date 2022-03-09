@@ -24,3 +24,6 @@ yarn-error.log*
 
 #json-server file
 /db.json
+
+#Cypress
+cypress.json
