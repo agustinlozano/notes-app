@@ -108,8 +108,8 @@ form textarea, button {
   font-weight: bold;
 }
 
-#btn:hover {
-  color: var(--selectedText)
+.btn:hover {
+  color: var(--selectedText) !important;
 }
 
 ::selection {
