@@ -39,7 +39,11 @@ const LoginForm = ({ handleUser, hanlderNotification }) => {
 
   return (
     <Toggleable buttonLabel='show login'>
-      <form onSubmit={hanldeLogin} className='login'>
+      <form
+        onSubmit={hanldeLogin}
+        className='login'
+        data-testid='login-form-id'
+      >
         <label htmlFor='Username'>
           <input
             className='login-field'
@@ -61,9 +65,8 @@ const LoginForm = ({ handleUser, hanlderNotification }) => {
           />
         </label>
         <button
-          className='login-field'
+          className='login-field btn'
           type='submit'
-          id='btn'
         >
           Login
         </button>

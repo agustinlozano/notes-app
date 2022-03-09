@@ -31,7 +31,11 @@ const NoteForm = ({ addNote }) => {
   return (
     <Toggleable buttonLabel='new note' ref={toggleableRef}>
       <h3>Create a new note</h3>
-      <form onSubmit={handleSubmit} className='note-form'>
+      <form
+        onSubmit={handleSubmit}
+        className='note-form'
+        data-testid='note-form-id'
+      >
         <NoteContent
           note={newNote}
           handleChange={handleContent}
@@ -42,7 +46,7 @@ const NoteForm = ({ addNote }) => {
         />
         <button
           type='submit'
-          id='btn'
+          className='btn'
         >
           save
         </button>

@@ -2,7 +2,10 @@ import Note from './Note'
 import propTypes from 'prop-types'
 
 const Notes = ({ notes }) =>
-  <div className='notes shadow'>
+  <div
+    data-testid='notes-container'
+    className='notes shadow'
+  >
     {
       notes.map(note =>
         <Note
