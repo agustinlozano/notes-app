@@ -13,7 +13,7 @@ const UserProfile = ({ user, handleUser }) => {
       <p><b>{user.username}</b> logged in</p>
       <button
         onClick={handleLogout}
-        id='btn'
+        className='btn'
       >
         logout
       </button>

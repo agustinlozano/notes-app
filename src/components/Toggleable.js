@@ -19,7 +19,7 @@ const Toggleable = forwardRef(({ children, buttonLabel }, ref) => {
       <div style={hideWhenVisible}>
         <button
           onClick={toggleVisibility}
-          id='btn'
+          className='btn'
         >{buttonLabel}
         </button>
       </div>
@@ -27,7 +27,7 @@ const Toggleable = forwardRef(({ children, buttonLabel }, ref) => {
         {children}
         <button
           onClick={toggleVisibility}
-          id='btn'
+          className='btn'
         >
           Cancel
         </button>

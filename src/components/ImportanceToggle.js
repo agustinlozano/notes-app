@@ -4,8 +4,7 @@ const ImportanceToggle = ({ setShowAll, showAll }) =>
   <div>
     <button
       onClick={() => setShowAll(!showAll)}
-      className='importance-toggle shadow'
-      id='btn'
+      className='importance-toggle shadow btn'
     >
       show {showAll ? 'important' : 'all'}
     </button>
